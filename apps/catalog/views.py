@@ -1,48 +1,128 @@
-import django_filters
+from django.db.models import Avg, Count
+from django_filters import rest_framework as filters
+from django_filters.rest_framework import DjangoFilterBackend
+
 from rest_framework import generics, permissions
+from rest_framework.filters import OrderingFilter, SearchFilter
+
 from .models import Category, Product
 from .serializers import (
-    CategorySerializer, ProductListSerializer, ProductDetailSerializer, ReviewSerializer,
+    CategorySerializer,
+    ProductListSerializer,
+    ProductDetailSerializer,
+    ReviewSerializer,
 )
 
 
-class ProductFilter(django_filters.FilterSet):
-    category = django_filters.CharFilter(field_name="category__slug")
-    min_price = django_filters.NumberFilter(field_name="price", lookup_expr="gte")
-    max_price = django_filters.NumberFilter(field_name="price", lookup_expr="lte")
-    search = django_filters.CharFilter(field_name="name", lookup_expr="icontains")
+# --------------------------------------------------
+# Filters
+# --------------------------------------------------
+class ProductFilter(filters.FilterSet):
+    category = filters.CharFilter(field_name="category__slug")
+    min_price = filters.NumberFilter(field_name="price", lookup_expr="gte")
+    max_price = filters.NumberFilter(field_name="price", lookup_expr="lte")
 
     class Meta:
         model = Product
-        fields = ["category", "min_price", "max_price", "search"]
+        fields = [
+            "category",
+            "min_price",
+            "max_price",
+        ]
 
 
+# --------------------------------------------------
+# Category List
+# GET /api/v1/categories
+# --------------------------------------------------
 class CategoryListView(generics.ListAPIView):
-    """GET /api/v1/categories"""
     permission_classes = [permissions.AllowAny]
-    queryset = Category.objects.filter(parent__isnull=True)
+
+    queryset = (
+        Category.objects.filter(parent__isnull=True)
+        .order_by("name")
+    )
+
     serializer_class = CategorySerializer
 
 
+# --------------------------------------------------
+# Product List
+# GET /api/v1/products
+# --------------------------------------------------
 class ProductListView(generics.ListAPIView):
-    """GET /api/v1/products?category=&min_price=&max_price=&search=&page="""
     permission_classes = [permissions.AllowAny]
-    queryset = Product.objects.filter(is_active=True).prefetch_related("images")
+
     serializer_class = ProductListSerializer
+
+    queryset = (
+        Product.objects.filter(is_active=True)
+        .select_related("category")
+        .prefetch_related("images")
+        .annotate(
+            average_rating=Avg("reviews__rating"),
+            review_count=Count("reviews"),
+        )
+    )
+
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter,
+    ]
+
     filterset_class = ProductFilter
-    ordering_fields = ["price", "created_at"]
+
+    search_fields = [
+        "name",
+        "sku",
+        "description",
+        "ingredients",
+    ]
+
+    ordering_fields = [
+        "price",
+        "mrp",
+        "created_at",
+        "name",
+    ]
+
+    ordering = [
+        "-created_at",
+    ]
 
 
+# --------------------------------------------------
+# Product Detail
+# GET /api/v1/products/<slug>
+# --------------------------------------------------
 class ProductDetailView(generics.RetrieveAPIView):
-    """GET /api/v1/products/:slug"""
     permission_classes = [permissions.AllowAny]
-    queryset = Product.objects.filter(is_active=True)
+
     serializer_class = ProductDetailSerializer
+
     lookup_field = "slug"
 
+    queryset = (
+        Product.objects.filter(is_active=True)
+        .select_related("category")
+        .prefetch_related(
+            "images",
+            "reviews",
+            "reviews__user",
+        )
+        .annotate(
+            average_rating=Avg("reviews__rating"),
+            review_count=Count("reviews"),
+        )
+    )
 
+
+# --------------------------------------------------
+# Reviews
+# GET / POST
+# --------------------------------------------------
 class ProductReviewListCreateView(generics.ListCreateAPIView):
-    """GET (public) / POST (auth) /api/v1/products/:product_id/reviews"""
     serializer_class = ReviewSerializer
 
     def get_permissions(self):
@@ -51,8 +131,16 @@ class ProductReviewListCreateView(generics.ListCreateAPIView):
         return [permissions.AllowAny()]
 
     def get_queryset(self):
-        return Product.objects.get(id=self.kwargs["product_id"]).reviews.all()
+        return (
+            Product.objects.get(
+                id=self.kwargs["product_id"]
+            )
+            .reviews.select_related("user")
+            .all()
+        )
 
     def perform_create(self, serializer):
-        # TODO: verify user has an order containing this product before allowing review
-        serializer.save(user=self.request.user, product_id=self.kwargs["product_id"])
+        serializer.save(
+            user=self.request.user,
+            product_id=self.kwargs["product_id"],
+        )

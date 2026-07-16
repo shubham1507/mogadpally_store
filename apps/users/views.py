@@ -1,44 +1,92 @@
-from rest_framework import generics, permissions, viewsets
+from django.contrib.auth import authenticate
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Address
-from .serializers import SignupSerializer, UserSerializer, AddressSerializer
+
+from .serializers import (
+    RegisterSerializer,
+    UserSerializer,
+    LoginSerializer,
+    LogoutSerializer,
+)
 
 
-class SignupView(generics.CreateAPIView):
-    """POST /api/v1/auth/signup — creates a user. Email verification sent async (TODO: hook up email task)."""
+class RegisterView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
-    serializer_class = SignupSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
         user = serializer.save()
+
+        return Response(
+            {
+                "message": "Registration successful.",
+                "user": UserSerializer(user).data,
+            },
+            status=status.HTTP_201_CREATED,
+        )
+
+class LoginView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        print("1. Request received")
+
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        print("2. Serializer OK")
+
+        print(serializer.validated_data)
+
+        user = authenticate(
+            email=serializer.validated_data["email"],
+            password=serializer.validated_data["password"],
+        )
+
+        print("3. authenticate() finished")
+
+        if not user:
+            print("4. Invalid credentials")
+            return Response(
+                {"detail": "Invalid credentials"},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        print("5. User authenticated")
+
         refresh = RefreshToken.for_user(user)
-        return Response({
-            "user": UserSerializer(user).data,
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
-        }, status=201)
+
+        print("6. JWT generated")
+
+        return Response(
+            {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "user": UserSerializer(user).data,
+            }
+        )
 
 
-class MeView(generics.RetrieveUpdateAPIView):
-    """GET/PATCH /api/v1/auth/me"""
+class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        serializer = LogoutSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        serializer.save()
+
+        return Response({"message": "Logged out successfully"})
+
+
+class ProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         return self.request.user
-
-
-class AddressViewSet(viewsets.ModelViewSet):
-    """CRUD for the current user's addresses — mounted at /api/v1/auth/me/addresses"""
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = AddressSerializer
-
-    def get_queryset(self):
-        return Address.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)

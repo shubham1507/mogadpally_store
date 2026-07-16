@@ -65,9 +65,9 @@ class User(AbstractUser):
     )
 
     created_at = models.DateTimeField(
-        default=timezone.now,
-        editable=False,
-    )
+    auto_now_add=True,
+    editable=False,
+)
 
     updated_at = models.DateTimeField(
         auto_now=True,
@@ -131,7 +131,7 @@ class Address(models.Model):
     )
 
     created_at = models.DateTimeField(
-        default=timezone.now,
+       auto_now_add=True,
         editable=False,
     )
 

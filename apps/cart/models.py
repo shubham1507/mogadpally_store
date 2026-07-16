@@ -9,7 +9,7 @@ from apps.catalog.models import Product
 
 class Cart(models.Model):
     """
-    Each user has exactly one active shopping cart.
+    One active cart per user.
     """
 
     id = models.UUIDField(
@@ -24,8 +24,13 @@ class Cart(models.Model):
         related_name="cart",
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
 
     class Meta:
         ordering = ["-updated_at"]
@@ -37,56 +42,16 @@ class Cart(models.Model):
 
     @property
     def total_items(self):
-        """
-        Total quantity of products in the cart.
-        """
         return sum(item.quantity for item in self.items.all())
 
     @property
     def subtotal(self):
-        """
-        Sum of all cart item subtotals.
-        """
-        return sum(
-            (item.subtotal for item in self.items.all()),
-            Decimal("0.00"),
-        )
-
-    @property
-    def shipping_charge(self):
-        """
-        Free shipping above ₹999.
-        """
-        return Decimal("0.00") if self.subtotal >= Decimal("999.00") else Decimal("50.00")
-
-    @property
-    def tax(self):
-        """
-        GST placeholder.
-        Currently 0%.
-        """
-        return Decimal("0.00")
-
-    @property
-    def discount(self):
-        """
-        Coupon support will come later.
-        """
-        return Decimal("0.00")
-
-    @property
-    def grand_total(self):
-        return (
-            self.subtotal
-            + self.shipping_charge
-            + self.tax
-            - self.discount
-        )
+        return sum(item.total_price for item in self.items.all())
 
 
 class CartItem(models.Model):
     """
-    A single product inside the user's cart.
+    Individual product inside a cart.
     """
 
     id = models.UUIDField(
@@ -107,39 +72,35 @@ class CartItem(models.Model):
         related_name="cart_items",
     )
 
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(
+        default=1,
+    )
 
-    price_snapshot = models.DecimalField(
+    price_at_addition = models.DecimalField(
         max_digits=10,
         decimal_places=2,
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
 
     class Meta:
-        ordering = ["created_at"]
-        verbose_name = "Cart Item"
-        verbose_name_plural = "Cart Items"
-
+        ordering = ["-created_at"]
         constraints = [
             models.UniqueConstraint(
                 fields=["cart", "product"],
-                name="unique_product_per_cart",
+                name="unique_cart_product",
             )
         ]
 
     def __str__(self):
-        return f"{self.product.name} × {self.quantity}"
+        return f"{self.product.name} ({self.quantity})"
 
     @property
-    def subtotal(self):
-        return self.price_snapshot * self.quantity
-
-    def save(self, *args, **kwargs):
-        """
-        Capture product price when first added.
-        """
-        if not self.price_snapshot:
-            self.price_snapshot = self.product.price
-
-        super().save(*args, **kwargs)
+    def total_price(self):
+        return self.price_at_addition * Decimal(self.quantity)

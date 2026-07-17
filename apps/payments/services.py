@@ -1,21 +1,21 @@
-from decimal import Decimal
-
 from django.db import transaction
 from django.utils import timezone
-from .exceptions import PaymentAlreadyExists
 
 from apps.orders.models import Order, OrderStatus
 
+from .exceptions import PaymentAlreadyExists
+from .gateway import RazorpayGateway
 from .models import (
     Payment,
     PaymentProvider,
     PaymentStatus,
 )
+from .utils import amount_to_paise
 
 
 class PaymentService:
     """
-    Base payment service.
+    Base Payment Service
     """
 
     @staticmethod
@@ -26,12 +26,12 @@ class PaymentService:
         provider: str,
     ) -> Payment:
 
-        if hasattr(order, "payment"):
+        if Payment.objects.filter(order=order).exists():
             raise PaymentAlreadyExists(
-    "Payment already exists."
-)
+                "Payment already exists for this order."
+            )
 
-        return Payment.objects.create(
+        payment = Payment.objects.create(
             order=order,
             user=order.user,
             provider=provider,
@@ -40,10 +40,12 @@ class PaymentService:
             status=PaymentStatus.PENDING,
         )
 
+        return payment
+
 
 class CODPaymentService:
     """
-    Cash On Delivery payment.
+    Cash On Delivery Payment
     """
 
     @staticmethod
@@ -55,15 +57,21 @@ class CODPaymentService:
             provider=PaymentProvider.COD,
         )
 
-        order.status = OrderStatus.CONFIRMED
-        order.save(update_fields=["status"])
-
         payment.status = PaymentStatus.SUCCESS
         payment.paid_at = timezone.now()
+
         payment.save(
             update_fields=[
                 "status",
                 "paid_at",
+            ]
+        )
+
+        order.status = OrderStatus.CONFIRMED
+
+        order.save(
+            update_fields=[
+                "status",
             ]
         )
 
@@ -72,7 +80,7 @@ class CODPaymentService:
 
 class RazorpayPaymentService:
     """
-    Placeholder for Razorpay integration.
+    Razorpay Order Creation Service
     """
 
     @staticmethod
@@ -84,7 +92,25 @@ class RazorpayPaymentService:
             provider=PaymentProvider.RAZORPAY,
         )
 
-        # Razorpay Order Creation
-        # Coming in next story.
+        client = RazorpayGateway.client()
+
+        razorpay_order = client.order.create(
+            {
+                "amount": amount_to_paise(order.total),
+                "currency": "INR",
+                "payment_capture": 1,
+                "receipt": str(order.id),
+            }
+        )
+
+        payment.gateway_order_id = razorpay_order["id"]
+        payment.gateway_response = razorpay_order
+
+        payment.save(
+            update_fields=[
+                "gateway_order_id",
+                "gateway_response",
+            ]
+        )
 
         return payment

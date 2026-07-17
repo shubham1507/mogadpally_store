@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 
 from apps.orders.models import Order
 
+from apps.payments.serializers import RazorpayOrderSerializer
+from apps.payments.services import RazorpayPaymentService
+
 from .models import Payment
 from .serializers import (
     CODPaymentSerializer,
@@ -48,3 +51,34 @@ class PaymentHistoryAPIView(ListAPIView):
         return Payment.objects.filter(
             user=self.request.user
         ).order_by("-created_at")
+    
+class RazorpayOrderAPIView(APIView):
+
+    permission_classes = [
+        IsAuthenticated
+    ]
+
+    def post(self, request):
+
+        serializer = RazorpayOrderSerializer(
+            data=request.data
+        )
+
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        order = get_object_or_404(
+            Order,
+            id=serializer.validated_data["order_id"],
+            user=request.user,
+        )
+
+        payment = RazorpayPaymentService.create(
+            order
+        )
+
+        return Response(
+            PaymentSerializer(payment).data,
+            status=status.HTTP_201_CREATED,
+        )

@@ -60,3 +60,12 @@ class PaymentHistorySerializer(serializers.ModelSerializer):
             "currency",
             "created_at",
         )
+
+class RazorpayOrderSerializer(serializers.Serializer):
+
+    order_id = serializers.UUIDField()
+
+class RazorpayVerifySerializer(serializers.Serializer):
+    razorpay_payment_id = serializers.CharField()
+    razorpay_order_id = serializers.CharField()
+    razorpay_signature = serializers.CharField()

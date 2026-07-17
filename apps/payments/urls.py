@@ -1,8 +1,21 @@
 from django.urls import path
-from .views import CreatePaymentIntentView, RazorpayWebhookView, PaymentStatusView
+
+from .views import (
+    CODPaymentAPIView,
+    PaymentHistoryAPIView,
+)
+
+app_name = "payments"
 
 urlpatterns = [
-    path("create-intent", CreatePaymentIntentView.as_view(), name="payment-create-intent"),
-    path("webhook", RazorpayWebhookView.as_view(), name="payment-webhook"),
-    path("<uuid:order_id>/status", PaymentStatusView.as_view(), name="payment-status"),
+    path(
+        "cod/",
+        CODPaymentAPIView.as_view(),
+        name="cod-payment",
+    ),
+    path(
+        "",
+        PaymentHistoryAPIView.as_view(),
+        name="payment-history",
+    ),
 ]

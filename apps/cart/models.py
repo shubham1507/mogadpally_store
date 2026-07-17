@@ -9,7 +9,7 @@ from apps.catalog.models import Product
 
 class Cart(models.Model):
     """
-    One active cart per user.
+    One active shopping cart per user.
     """
 
     id = models.UUIDField(
@@ -46,7 +46,10 @@ class Cart(models.Model):
 
     @property
     def subtotal(self):
-        return sum(item.total_price for item in self.items.all())
+        return sum(
+            item.total_price
+            for item in self.items.all()
+        )
 
 
 class CartItem(models.Model):
@@ -76,6 +79,7 @@ class CartItem(models.Model):
         default=1,
     )
 
+    # Snapshot of price when item was added
     price_at_addition = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -91,6 +95,7 @@ class CartItem(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
         constraints = [
             models.UniqueConstraint(
                 fields=["cart", "product"],

@@ -1,0 +1,303 @@
+newman
+
+Mogadpally Brothers API
+
+□ 01 - Auth
+└ Signup
+  POST http://localhost:8000/api/v1/auth/signup [404 Not Found, 6.21kB, 42ms]
+  1. Status is 2xx
+
+└ Login
+  POST http://localhost:8000/api/v1/auth/login [401 Unauthorized, 360B, 900ms]
+  2. Status is 2xx
+
+└ Login (Admin)
+  POST http://localhost:8000/api/v1/auth/login [400 Bad Request, 413B, 4ms]
+  3. Status is 2xx
+
+└ Refresh Token
+  POST http://localhost:8000/api/v1/auth/refresh [400 Bad Request, 371B, 4ms]
+  4. Status is 2xx
+
+└ Get My Profile
+  GET http://localhost:8000/api/v1/auth/me [404 Not Found, 6.2kB, 9ms]
+  5. Status is 2xx
+
+└ Update My Profile
+  PATCH http://localhost:8000/api/v1/auth/me [404 Not Found, 6.2kB, 7ms]
+  6. Status is 2xx
+
+└ List My Addresses
+  GET http://localhost:8000/api/v1/auth/me/addresses/ [404 Not Found, 6.23kB, 6ms]
+  7. Status is 2xx
+
+└ Add Address
+  POST http://localhost:8000/api/v1/auth/me/addresses/ [404 Not Found, 6.23kB, 8ms]
+  8. Status is 2xx
+
+└ Update Address
+  PATCH http://localhost:8000/api/v1/auth/me/addresses// [404 Not Found, 6.24kB, 15ms]
+  9. Status is 2xx
+
+□ 02 - Catalog
+└ List Categories
+  GET http://localhost:8000/api/v1/categories [200 OK, 1.02kB, 56ms]
+  √  Status is 2xx
+
+└ List Products
+  GET http://localhost:8000/api/v1/products [200 OK, 2.17kB, 94ms]
+  √  Status is 2xx
+
+└ List Products — Filter by Category
+  GET http://localhost:8000/api/v1/products?category=stress-sleep [200 OK, 835B, 79ms]
+  √  Status is 2xx
+
+└ List Products — Price Range
+  GET http://localhost:8000/api/v1/products?min_price=100&max_price=300 [200 OK, 1.94kB, 72ms]
+  √  Status is 2xx
+
+└ List Products — Search
+  GET http://localhost:8000/api/v1/products?search=ashwagandha [200 OK, 1.04kB, 68ms]
+  √  Status is 2xx
+
+└ Get Product Detail
+  GET http://localhost:8000/api/v1/products/bhringraj-hair-oil [200 OK, 923B, 69ms]
+  √  Status is 2xx
+
+└ List Product Reviews
+  GET http://localhost:8000/api/v1/products/e105f2ec-7f60-4275-9519-7eaeada2dcf9/reviews [200 OK, 381B, 59ms]
+  √  Status is 2xx
+
+└ Create Product Review
+  POST http://localhost:8000/api/v1/products/e105f2ec-7f60-4275-9519-7eaeada2dcf9/reviews [401 Unauthorized, 435B, 4ms]
+ 10. Status is 2xx
+
+□ 03 - Cart
+└ Get Cart
+  GET http://localhost:8000/api/v1/cart/ [404 Not Found, 6.19kB, 8ms]
+ 11. Status is 2xx
+
+└ Add Item to Cart
+  POST http://localhost:8000/api/v1/cart/items [404 Not Found, 6.21kB, 7ms]
+ 12. Status is 2xx
+
+└ Add Second Item to Cart
+  POST http://localhost:8000/api/v1/cart/items [404 Not Found, 6.21kB, 7ms]
+ 13. Status is 2xx
+
+└ Update Cart Item Quantity
+  PATCH http://localhost:8000/api/v1/cart/items/e105f2ec-7f60-4275-9519-7eaeada2dcf9 [401 Unauthorized, 425B, 3ms]
+ 14. Status is 2xx
+
+└ Remove Cart Item
+  DELETE http://localhost:8000/api/v1/cart/items/9579959a-5c4a-4d4c-ac1b-2358e5d8f341 [401 Unauthorized, 425B, 3ms]
+ 15. Status is 2xx
+
+□ 04 - Wishlist
+└ Get Wishlist
+  GET http://localhost:8000/api/v1/wishlist/ [404 Not Found, 6.2kB, 6ms]
+ 16. Status is 2xx
+
+└ Add to Wishlist
+  POST http://localhost:8000/api/v1/wishlist/e105f2ec-7f60-4275-9519-7eaeada2dcf9 [404 Not Found, 6.31kB, 8ms]
+ 17. Status is 2xx
+
+└ Remove from Wishlist
+  DELETE http://localhost:8000/api/v1/wishlist/e105f2ec-7f60-4275-9519-7eaeada2dcf9 [404 Not Found, 6.32kB, 10ms]
+ 18. Status is 2xx
+
+□ 05 - Orders
+└ Create Order (Checkout)
+  POST http://localhost:8000/api/v1/orders/ [404 Not Found, 6.2kB, 6ms]
+ 19. Status is 2xx
+
+└ List My Orders
+  GET http://localhost:8000/api/v1/orders/list [404 Not Found, 6.21kB, 8ms]
+ 20. Status is 2xx
+
+└ Get Order Detail
+  GET http://localhost:8000/api/v1/orders/ [404 Not Found, 6.2kB, 7ms]
+ 21. Status is 2xx
+
+└ Cancel Order
+  POST http://localhost:8000/api/v1/orders//cancel [404 Not Found, 6.22kB, 6ms]
+ 22. Status is 2xx
+
+□ 06 - Payments
+└ Create Payment Intent
+  POST http://localhost:8000/api/v1/payments/create-intent [404 Not Found, 6.24kB, 7ms]
+ 23. Status is 2xx
+
+└ Get Payment Status
+  GET http://localhost:8000/api/v1/payments//status [404 Not Found, 6.23kB, 8ms]
+ 24. Status is 2xx
+
+└ Webhook (manual signature test only)
+  POST http://localhost:8000/api/v1/payments/webhook [404 Not Found, 6.23kB, 6ms]
+  √  Documented as reference-only, not asserting status
+
+□ 07 - Admin
+└ Django Admin — Login Page Reachable
+  GET http://localhost:8000/admin/ [200 OK, 4.63kB, 11ms]
+  √  Admin login page loads
+
+□ 08 - Cleanup
+└ Clear Cart
+  DELETE http://localhost:8000/api/v1/cart/ [404 Not Found, 6.2kB, 8ms]
+ 25. Status is 2xx
+
+└ Delete Address
+  DELETE http://localhost:8000/api/v1/auth/me/addresses// [404 Not Found, 6.24kB, 7ms]
+ 26. Either succeeds (204) or is correctly protected (400)
+
+┌─────────────────────────┬───────────────────┬───────────────────┐
+│                         │          executed │            failed │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              iterations │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│                requests │                35 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│            test-scripts │                35 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│      prerequest-scripts │                 0 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              assertions │                35 │                26 │
+├─────────────────────────┴───────────────────┴───────────────────┤
+│ total run duration: 4.6s                                        │
+├─────────────────────────────────────────────────────────────────┤
+│ total data received: 134.75kB (approx)                          │
+├─────────────────────────────────────────────────────────────────┤
+│ average response time: 46ms [min: 3ms, max: 900ms, s.d.: 148ms] │
+└─────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                [39m
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 01.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Signup"                           
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 02.  AssertionError  Status is 2xx                                         
+                      expected 401 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Login"                            
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 03.  AssertionError  Status is 2xx                                         
+                      expected 400 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Login (Admin)"                    
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 04.  AssertionError  Status is 2xx                                         
+                      expected 400 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Refresh Token"                    
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 05.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Get My Profile"                   
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 06.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Update My Profile"                
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 07.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / List My Addresses"                
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 08.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Add Address"                      
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 09.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "01 - Auth / Update Address"                   
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 10.  AssertionError  Status is 2xx                                         
+                      expected 401 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "02 - Catalog / Create Product Review"         
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 11.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "03 - Cart / Get Cart"                         
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 12.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "03 - Cart / Add Item to Cart"                 
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 13.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "03 - Cart / Add Second Item to Cart"          
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 14.  AssertionError  Status is 2xx                                         
+                      expected 401 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "03 - Cart / Update Cart Item Quantity"        
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 15.  AssertionError  Status is 2xx                                         
+                      expected 401 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "03 - Cart / Remove Cart Item"                 
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 16.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "04 - Wishlist / Get Wishlist"                 
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 17.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "04 - Wishlist / Add to Wishlist"              
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 18.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "04 - Wishlist / Remove from Wishlist"         
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 19.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "05 - Orders / Create Order (Checkout)"        
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 20.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "05 - Orders / List My Orders"                 
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 21.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "05 - Orders / Get Order Detail"               
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 22.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "05 - Orders / Cancel Order"                   
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 23.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "06 - Payments / Create Payment Intent"        
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 24.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "06 - Payments / Get Payment Status"           
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 25.  AssertionError  Status is 2xx                                         
+                      expected 404 to be within 200..299                    
+                      at assertion:0 in test-script                         
+                      inside "08 - Cleanup / Clear Cart"                    
+[90m     [39m[90m                [39m[90m                                                       [39m
+ 26.  AssertionError  Either succeeds (204) or is correctly protected (400) 
+                      expected [ 204, 400 ] to include 404                  
+                      at assertion:0 in test-script                         
+                      inside "08 - Cleanup / Delete Address"                

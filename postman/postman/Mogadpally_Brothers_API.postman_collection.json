@@ -36,6 +36,14 @@
       "key": "cart_item_id",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "order_id",
+      "value": ""
+    },
+    {
+    "key": "order_id",
+    "value": ""
     }
   ],
 
@@ -681,7 +689,178 @@
           }
         }
       ]
+    },
+{
+  "name": "04 Orders",
+  "item": [
+    {
+      "name": "Checkout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/orders/checkout/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "checkout"
+          ]
+        },
+        "description": "Creates an order from the authenticated user's cart."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 201', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "var data = pm.response.json();",
+              "",
+              "if(data.id){",
+              "   pm.collectionVariables.set('order_id', data.id);",
+              "}",
+              "",
+              "pm.test('Order Created', function(){",
+              "    pm.expect(data.id).to.not.be.undefined;",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "My Orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/orders/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "description": "Returns all orders of logged in user."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function(){",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var data = pm.response.json();",
+              "",
+              "pm.test('Array Returned', function(){",
+              "    pm.expect(Array.isArray(data)).to.eql(true);",
+              "});",
+              "",
+              "if(data.length>0){",
+              "   pm.collectionVariables.set('order_id', data[0].id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Order Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/orders/{{order_id}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "{{order_id}}"
+          ]
+        },
+        "description": "Returns single order."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function(){",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var data = pm.response.json();",
+              "",
+              "pm.test('Has Items', function(){",
+              "    pm.expect(data.items).to.not.be.undefined;",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cancel Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/orders/{{order_id}}/cancel/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "{{order_id}}",
+            "cancel"
+          ]
+        },
+        "description": "Cancels a pending order."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function(){",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
     }
+  ]
+}
   ]
 }
   ]

@@ -1,9 +1,33 @@
 from django.urls import path
-from .views import CreateOrderView, OrderListView, OrderDetailView, CancelOrderView
+
+from .views import (
+    CancelOrderAPIView,
+    CheckoutAPIView,
+    OrderDetailAPIView,
+    OrderListAPIView,
+)
+
+app_name = "orders"
 
 urlpatterns = [
-    path("", CreateOrderView.as_view(), name="order-create"),
-    path("list", OrderListView.as_view(), name="order-list"),
-    path("<uuid:pk>", OrderDetailView.as_view(), name="order-detail"),
-    path("<uuid:pk>/cancel", CancelOrderView.as_view(), name="order-cancel"),
+    path(
+        "checkout/",
+        CheckoutAPIView.as_view(),
+        name="checkout",
+    ),
+    path(
+        "",
+        OrderListAPIView.as_view(),
+        name="order-list",
+    ),
+    path(
+        "<uuid:id>/",
+        OrderDetailAPIView.as_view(),
+        name="order-detail",
+    ),
+    path(
+        "<uuid:id>/cancel/",
+        CancelOrderAPIView.as_view(),
+        name="cancel-order",
+    ),
 ]

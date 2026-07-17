@@ -1,27 +1,76 @@
 from rest_framework import serializers
+
 from .models import Order, OrderItem
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = ["id", "product", "product_name_snapshot", "quantity", "unit_price"]
+        fields = (
+            "id",
+            "product",
+            "product_name",
+            "product_sku",
+            "quantity",
+            "price",
+            "total",
+        )
+        read_only_fields = fields
 
 
-class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True, read_only=True)
+class OrderListSerializer(serializers.ModelSerializer):
+    total_items = serializers.ReadOnlyField()
 
     class Meta:
         model = Order
-        fields = [
-            "id", "order_number", "status", "shipping_address", "billing_address",
-            "subtotal_amount", "discount_amount", "shipping_amount", "total_amount",
-            "payment_status", "coupon_code", "items", "created_at",
-        ]
-        read_only_fields = [f for f in fields if f != "shipping_address"]
+        fields = (
+            "id",
+            "status",
+            "subtotal",
+            "tax",
+            "shipping_charge",
+            "discount",
+            "total",
+            "total_items",
+            "created_at",
+        )
+        read_only_fields = fields
 
 
-class CreateOrderSerializer(serializers.Serializer):
-    shipping_address_id = serializers.UUIDField()
-    billing_address_id = serializers.UUIDField(required=False)
-    coupon_code = serializers.CharField(required=False, allow_blank=True)
+class OrderDetailSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(
+        many=True,
+        read_only=True,
+    )
+
+    total_items = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Order
+        fields = (
+            "id",
+            "status",
+            "subtotal",
+            "tax",
+            "shipping_charge",
+            "discount",
+            "total",
+            "total_items",
+            "notes",
+            "created_at",
+            "updated_at",
+            "items",
+        )
+        read_only_fields = fields
+
+
+class CheckoutResponseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = (
+            "id",
+            "status",
+            "total",
+            "created_at",
+        )
+        read_only_fields = fields

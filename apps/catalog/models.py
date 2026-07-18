@@ -27,7 +27,14 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     mrp = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField(default=0)
+    stock_quantity = models.PositiveIntegerField(default=0)
+
+    reserved_quantity = models.PositiveIntegerField(default=0)
+
+    low_stock_threshold = models.PositiveIntegerField(default=5)
+
     is_active = models.BooleanField(default=True)
+   
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

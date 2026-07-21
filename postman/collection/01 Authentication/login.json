@@ -1,0 +1,61 @@
+{
+  "name": "Login",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/auth/login/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "auth",
+        "login"
+      ]
+    },
+    "description": "Authenticate user and generate JWT tokens."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const json = pm.response.json();",
+          "",
+          "pm.test('Access token returned', function () {",
+          "    pm.expect(json.access).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Refresh token returned', function () {",
+          "    pm.expect(json.refresh).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('User object returned', function () {",
+          "    pm.expect(json.user).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.collectionVariables.set('access_token', json.access);",
+          "pm.collectionVariables.set('refresh_token', json.refresh);",
+          "pm.collectionVariables.set('user_id', json.user.id);",
+          "",
+          "pm.test('Response time < 1000 ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

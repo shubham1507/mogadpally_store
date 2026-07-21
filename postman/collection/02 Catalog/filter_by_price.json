@@ -1,0 +1,54 @@
+{
+  "name": "Filter by Price",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products?min_price=100&max_price=500",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products"
+      ],
+      "query": [
+        {
+          "key": "min_price",
+          "value": "100"
+        },
+        {
+          "key": "max_price",
+          "value": "500"
+        }
+      ]
+    },
+    "description": "Returns products between a given price range."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const products = pm.response.json();",
+          "",
+          "pm.test('Response is array', function () {",
+          "    pm.expect(products).to.be.an('array');",
+          "});",
+          "",
+          "products.forEach(function(product){",
+          "    pm.expect(Number(product.price)).to.be.at.least(100);",
+          "    pm.expect(Number(product.price)).to.be.at.most(500);",
+          "});",
+          "",
+          "pm.test('Response time < 1000 ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

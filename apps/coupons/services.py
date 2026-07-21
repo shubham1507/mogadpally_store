@@ -108,7 +108,7 @@ class CouponService:
         final_total = order.total - discount
 
         return {
-            "coupon": coupon,
-            "discount": discount,
-            "final_total": final_total,
+            "coupon": coupon.code,
+            "discount": str(discount),
+            "final_total": str(final_total),
         }

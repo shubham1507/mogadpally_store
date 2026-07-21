@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from drf_spectacular.utils import extend_schema
 from .models import Order, OrderStatus
 from .serializers import (
     CheckoutResponseSerializer,
@@ -18,7 +18,7 @@ class CheckoutAPIView(APIView):
     """
 
     permission_classes = [IsAuthenticated]
-
+    @extend_schema(request=None,responses={201: CheckoutResponseSerializer})
     def post(self, request):
         order = CheckoutService.checkout(request.user)
 
@@ -67,7 +67,7 @@ class CancelOrderAPIView(APIView):
     """
 
     permission_classes = [IsAuthenticated]
-
+    @extend_schema(request=None,responses={201: CheckoutResponseSerializer})
     def post(self, request, id):
 
         try:

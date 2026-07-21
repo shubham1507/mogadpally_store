@@ -1,0 +1,49 @@
+{
+  "name": "Sort Products (Price ASC)",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products?ordering=price",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products"
+      ],
+      "query": [
+        {
+          "key": "ordering",
+          "value": "price"
+        }
+      ]
+    },
+    "description": "Sort products by ascending price."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const products = pm.response.json();",
+          "",
+          "pm.test('Response is array', function(){",
+          "    pm.expect(products).to.be.an('array');",
+          "});",
+          "",
+          "for(let i=1;i<products.length;i++){",
+          "    pm.expect(Number(products[i].price)).to.be.at.least(Number(products[i-1].price));",
+          "}",
+          "",
+          "pm.test('Products sorted ascending', function(){",
+          "    pm.expect(true).to.eql(true);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

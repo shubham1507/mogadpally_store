@@ -1,0 +1,55 @@
+{
+  "name": "Get Products",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products"
+      ]
+    },
+    "description": "Returns all active products."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const data = pm.response.json();",
+          "",
+          "pm.test('Response is array', function () {",
+          "    pm.expect(data).to.be.an('array');",
+          "});",
+          "",
+          "pm.test('Products available', function () {",
+          "    pm.expect(data.length).to.be.greaterThan(0);",
+          "});",
+          "",
+          "pm.collectionVariables.set('product_id', data[0].id);",
+          "pm.collectionVariables.set('product_slug', data[0].slug);",
+          "pm.collectionVariables.set('product_name', data[0].name);",
+          "",
+          "pm.test('Product has slug', function(){",
+          "    pm.expect(data[0].slug).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Product has price', function(){",
+          "    pm.expect(data[0].price).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Response time < 1000 ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

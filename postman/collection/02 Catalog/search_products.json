@@ -1,0 +1,54 @@
+{
+  "name": "Search Products",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products?search={{product_name}}",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products"
+      ],
+      "query": [
+        {
+          "key": "search",
+          "value": "{{product_name}}"
+        }
+      ]
+    },
+    "description": "Search products by name, SKU, description or ingredients."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const products = pm.response.json();",
+          "",
+          "pm.test('Response is array', function () {",
+          "    pm.expect(products).to.be.an('array');",
+          "});",
+          "",
+          "pm.test('Search returns at least one product', function () {",
+          "    pm.expect(products.length).to.be.greaterThan(0);",
+          "});",
+          "",
+          "pm.test('Returned product contains searched name', function () {",
+          "    pm.expect(products[0].name.toLowerCase()).to.include(pm.collectionVariables.get('product_name').toLowerCase());",
+          "});",
+          "",
+          "pm.test('Response time < 1000 ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}
+

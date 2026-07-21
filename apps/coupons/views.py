@@ -4,22 +4,30 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from drf_spectacular.utils import extend_schema
 from apps.orders.models import Order
 
 from .models import Coupon
 from .serializers import ApplyCouponSerializer
 from .services import CouponService
+from .serializers import (
+    ApplyCouponSerializer,
+    CouponSerializer,
+)
 
 
 class CouponListAPIView(generics.ListAPIView):
 
     permission_classes = [IsAuthenticated]
+    serializer_class = CouponSerializer
 
     queryset = Coupon.objects.filter(
         is_active=True
     ).order_by("code")
-
+    @extend_schema(
+    summary="List Coupons",
+    description="Returns all active coupons."
+    )
     def list(self, request, *args, **kwargs):
 
         coupons = self.get_queryset()
@@ -41,7 +49,12 @@ class CouponListAPIView(generics.ListAPIView):
 class ApplyCouponAPIView(APIView):
 
     permission_classes = [IsAuthenticated]
-
+    @extend_schema(
+    request=ApplyCouponSerializer,
+    responses={200: None},
+    summary="Apply Coupon",
+    description="Apply coupon on an order."
+    )
     def post(self, request):
 
         serializer = ApplyCouponSerializer(

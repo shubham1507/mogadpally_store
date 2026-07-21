@@ -1,0 +1,54 @@
+{
+  "name": "Get Cart",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/cart",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "cart"
+      ]
+    },
+    "description": "Returns authenticated user's cart."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const cart = pm.response.json();",
+          "",
+          "pm.test('Cart has id', function(){",
+          "    pm.expect(cart.id).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Items is array', function(){",
+          "    pm.expect(cart.items).to.be.an('array');",
+          "});",
+          "",
+          "pm.collectionVariables.set('cart_id', cart.id);",
+          "",
+          "if(cart.items.length>0){",
+          "    pm.collectionVariables.set('cart_item_id', cart.items[0].id);",
+          "}",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

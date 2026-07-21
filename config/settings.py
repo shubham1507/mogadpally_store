@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "storages",
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
+    "django_extensions",
     
     # local apps
     "apps.users",
@@ -72,16 +73,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 AUTH_USER_MODEL = "users.User"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "mogadpally"),
-        "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "PORT": os.environ.get("DB_PORT", "5432"),
-    }
-}
 
 DATABASES = {
     "default": {
@@ -133,25 +124,34 @@ REST_FRAMEWORK = {
     "common.exceptions.custom_exception_handler",
 }
 
+
+
 SPECTACULAR_SETTINGS = {
-
     "TITLE": "Mogadpally Brothers API",
-
-    "DESCRIPTION":
-        "Production Ready Ayurvedic Ecommerce Backend",
-
+    "DESCRIPTION": "Production Ready Ayurvedic Ecommerce Backend",
     "VERSION": "1.0.0",
 
     "SERVE_INCLUDE_SCHEMA": False,
-     "SWAGGER_UI_SETTINGS": {
+
+    "SWAGGER_UI_SETTINGS": {
         "persistAuthorization": True,
     },
+
     "SECURITY": [
         {
             "BearerAuth": [],
         }
     ],
-     "COMPONENT_SPLIT_REQUEST": True,
+
+    "COMPONENT_SPLIT_REQUEST": True,
+
+    "SECURITY_SCHEMES": {
+        "BearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+        }
+    },
 }
 
 SIMPLE_JWT = {

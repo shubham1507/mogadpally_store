@@ -1,0 +1,55 @@
+{
+  "name": "Checkout",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/orders/checkout/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "orders",
+        "checkout"
+      ]
+    },
+    "description": "Converts the authenticated user's cart into an order."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 201', function(){",
+          "    pm.response.to.have.status(201);",
+          "});",
+          "",
+          "const order = pm.response.json();",
+          "",
+          "pm.test('Order ID exists', function(){",
+          "    pm.expect(order.id).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Order status exists', function(){",
+          "    pm.expect(order.status).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Order total exists', function(){",
+          "    pm.expect(order.total).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.collectionVariables.set('order_id', order.id);",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

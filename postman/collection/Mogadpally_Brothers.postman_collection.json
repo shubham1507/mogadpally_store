@@ -1,0 +1,1583 @@
+{
+  "info": {
+    "_postman_id": "37a8dfa5-d0e6-48fc-a3d3-8bba80594f45",
+    "name": "Mogadpally Brothers API",
+    "description": "Generated automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticate user and generate JWT tokens."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test('Access token returned', function () {",
+                  "    pm.expect(json.access).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Refresh token returned', function () {",
+                  "    pm.expect(json.refresh).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('User object returned', function () {",
+                  "    pm.expect(json.user).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('access_token', json.access);",
+                  "pm.collectionVariables.set('refresh_token', json.refresh);",
+                  "pm.collectionVariables.set('user_id', json.user.id);",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Blacklist refresh token and logout user."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test('Logout successful', function () {",
+                  "    pm.expect(json.message).to.eql('Logged out successfully');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Returns authenticated user's profile."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test('Email exists', function () {",
+                  "    pm.expect(json.email).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('First name exists', function () {",
+                  "    pm.expect(json.first_name).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('User ID exists', function () {",
+                  "    pm.expect(json.id).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/refresh",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            },
+            "description": "Generates a new access token using refresh token."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test('Access token returned', function () {",
+                  "    pm.expect(json.access).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('access_token', json.access);",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\",\n    \"confirm_password\": \"{{user_password}}\",\n    \"first_name\": \"Test\",\n    \"last_name\": \"Customer\",\n    \"phone\": \"{{user_phone}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Registers a new customer."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test('Registration successful', function () {",
+                  "    pm.expect(json.message).to.eql('Registration successful.');",
+                  "});",
+                  "",
+                  "pm.test('User object returned', function () {",
+                  "    pm.expect(json.user).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('user_id', json.user.id);",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Catalog",
+      "item": [
+        {
+          "name": "Add Product Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rating\": 5,\n    \"comment\": \"Excellent Ayurvedic product.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}/reviews",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "{{product_id}}",
+                "reviews"
+              ]
+            },
+            "description": "Creates a review for a product."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', function(){",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const review = pm.response.json();",
+                  "",
+                  "pm.test('Rating saved', function(){",
+                  "    pm.expect(review.rating).to.eql(5);",
+                  "});",
+                  "",
+                  "pm.test('Comment saved', function(){",
+                  "    pm.expect(review.comment).to.eql('Excellent Ayurvedic product.');",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('review_id', review.id);",
+                  "",
+                  "pm.test('Response time < 1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Filter by Price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?min_price=100&max_price=500",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "min_price",
+                  "value": "100"
+                },
+                {
+                  "key": "max_price",
+                  "value": "500"
+                }
+              ]
+            },
+            "description": "Returns products between a given price range."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const products = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function () {",
+                  "    pm.expect(products).to.be.an('array');",
+                  "});",
+                  "",
+                  "products.forEach(function(product){",
+                  "    pm.expect(Number(product.price)).to.be.at.least(100);",
+                  "    pm.expect(Number(product.price)).to.be.at.most(500);",
+                  "});",
+                  "",
+                  "pm.test('Response time < 1000 ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Filter by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?category={{category_slug}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "{{category_slug}}"
+                }
+              ]
+            },
+            "description": "Returns products belonging to a category."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const products = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function(){",
+                  "    pm.expect(products).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Products found', function(){",
+                  "    pm.expect(products.length).to.be.greaterThan(0);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Returns all parent categories."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const data = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function () {",
+                  "    pm.expect(data).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('At least one category exists', function () {",
+                  "    pm.expect(data.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('category_id', data[0].id);",
+                  "pm.collectionVariables.set('category_slug', data[0].slug);",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Product Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/{{product_slug}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "{{product_slug}}"
+              ]
+            },
+            "description": "Returns complete details of a product including category, images and reviews."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const product = pm.response.json();",
+                  "",
+                  "pm.test('Product ID exists', function () {",
+                  "    pm.expect(product.id).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Product name exists', function () {",
+                  "    pm.expect(product.name).to.not.be.empty;",
+                  "});",
+                  "",
+                  "pm.test('Product slug matches', function () {",
+                  "    pm.expect(product.slug).to.eql(pm.collectionVariables.get('product_slug'));",
+                  "});",
+                  "",
+                  "pm.test('Category exists', function () {",
+                  "    pm.expect(product.category).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Images is an array', function () {",
+                  "    pm.expect(product.images).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Reviews is an array', function () {",
+                  "    pm.expect(product.reviews).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Price exists', function () {",
+                  "    pm.expect(product.price).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('MRP exists', function () {",
+                  "    pm.expect(product.mrp).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Stock quantity exists', function () {",
+                  "    pm.expect(product.stock_quantity).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Description exists', function () {",
+                  "    pm.expect(product.description).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Product Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}/reviews",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "{{product_id}}",
+                "reviews"
+              ]
+            },
+            "description": "Returns all reviews for a product."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const reviews = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function(){",
+                  "    pm.expect(reviews).to.be.an('array');",
+                  "});",
+                  "",
+                  "if(reviews.length > 0){",
+                  "    pm.test('Review contains rating', function(){",
+                  "        pm.expect(reviews[0].rating).to.not.be.undefined;",
+                  "    });",
+                  "",
+                  "    pm.test('Review contains comment', function(){",
+                  "        pm.expect(reviews[0].comment).to.not.be.undefined;",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time < 1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            },
+            "description": "Returns all active products."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const data = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function () {",
+                  "    pm.expect(data).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Products available', function () {",
+                  "    pm.expect(data.length).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('product_id', data[0].id);",
+                  "pm.collectionVariables.set('product_slug', data[0].slug);",
+                  "pm.collectionVariables.set('product_name', data[0].name);",
+                  "",
+                  "pm.test('Product has slug', function(){",
+                  "    pm.expect(data[0].slug).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Product has price', function(){",
+                  "    pm.expect(data[0].price).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time < 1000 ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Search Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?search={{product_name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{product_name}}"
+                }
+              ]
+            },
+            "description": "Search products by name, SKU, description or ingredients."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const products = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function () {",
+                  "    pm.expect(products).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Search returns at least one product', function () {",
+                  "    pm.expect(products.length).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "pm.test('Returned product contains searched name', function () {",
+                  "    pm.expect(products[0].name.toLowerCase()).to.include(pm.collectionVariables.get('product_name').toLowerCase());",
+                  "});",
+                  "",
+                  "pm.test('Response time < 1000 ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sort Products (Price ASC)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?ordering=price",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "price"
+                }
+              ]
+            },
+            "description": "Sort products by ascending price."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const products = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function(){",
+                  "    pm.expect(products).to.be.an('array');",
+                  "});",
+                  "",
+                  "for(let i=1;i<products.length;i++){",
+                  "    pm.expect(Number(products[i].price)).to.be.at.least(Number(products[i-1].price));",
+                  "}",
+                  "",
+                  "pm.test('Products sorted ascending', function(){",
+                  "    pm.expect(true).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sort Products (Price ASC)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?ordering=price",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": " -price"
+                }
+              ]
+            },
+            "description": "Sort products by descending price."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const products = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function(){",
+                  "    pm.expect(products).to.be.an('array');",
+                  "});",
+                  "",
+                  "for(let i=1;i<products.length;i++){",
+                  "    pm.expect(Number(products[i].price)).to.be.at.most(Number(products[i-1].price));",
+                  "}",
+                  "",
+                  "pm.test('Products sorted descending', function(){",
+                  "    pm.expect(true).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Cart",
+      "item": [
+        {
+          "name": "Add Item To Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"product_id\":\"{{product_id}}\",\n    \"quantity\":1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cart/items",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const cart = pm.response.json();",
+                  "",
+                  "pm.test('Cart has items', function(){",
+                  "    pm.expect(cart.items.length).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('cart_item_id', cart.items[0].id);",
+                  "",
+                  "pm.test('Subtotal exists', function(){",
+                  "    pm.expect(cart.subtotal).to.not.be.undefined;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cart",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            },
+            "description": "Removes all items from the authenticated user's cart."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const cart = pm.response.json();",
+                  "",
+                  "pm.test('Cart is empty', function(){",
+                  "    pm.expect(cart.items.length).to.eql(0);",
+                  "});",
+                  "",
+                  "pm.test('Total items is zero', function(){",
+                  "    pm.expect(cart.total_items).to.eql(0);",
+                  "});",
+                  "",
+                  "pm.test('Subtotal is zero', function(){",
+                  "    pm.expect(Number(cart.subtotal)).to.eql(0);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Cart",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cart",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            },
+            "description": "Returns authenticated user's cart."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const cart = pm.response.json();",
+                  "",
+                  "pm.test('Cart has id', function(){",
+                  "    pm.expect(cart.id).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Items is array', function(){",
+                  "    pm.expect(cart.items).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('cart_id', cart.id);",
+                  "",
+                  "if(cart.items.length>0){",
+                  "    pm.collectionVariables.set('cart_item_id', cart.items[0].id);",
+                  "}",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remove Cart Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cart/items/{{cart_item_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cart",
+                "items",
+                "{{cart_item_id}}"
+              ]
+            },
+            "description": "Removes one item from the cart."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const cart = pm.response.json();",
+                  "",
+                  "pm.test('Cart returned', function(){",
+                  "    pm.expect(cart.id).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Cart Item Quantity",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"quantity\":2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cart/items/{{cart_item_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cart",
+                "items",
+                "{{cart_item_id}}"
+              ]
+            },
+            "description": "Updates quantity of an existing cart item."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const cart = pm.response.json();",
+                  "",
+                  "pm.test('Cart contains items', function(){",
+                  "    pm.expect(cart.items.length).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "pm.test('Quantity updated', function(){",
+                  "    pm.expect(cart.items[0].quantity).to.eql(2);",
+                  "});",
+                  "",
+                  "pm.test('Subtotal exists', function(){",
+                  "    pm.expect(cart.subtotal).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 checkout",
+      "item": [
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/{{order_id}}/cancel/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                "{{order_id}}",
+                "cancel"
+              ]
+            },
+            "description": "Cancels a pending order."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.test('Cancellation successful', function(){",
+                  "    pm.expect(response.message).to.eql('Order cancelled successfully.');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/checkout/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                "checkout"
+              ]
+            },
+            "description": "Converts the authenticated user's cart into an order."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', function(){",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const order = pm.response.json();",
+                  "",
+                  "pm.test('Order ID exists', function(){",
+                  "    pm.expect(order.id).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Order status exists', function(){",
+                  "    pm.expect(order.status).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Order total exists', function(){",
+                  "    pm.expect(order.total).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('order_id', order.id);",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Returns all orders of authenticated user."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const orders = pm.response.json();",
+                  "",
+                  "pm.test('Orders is array', function(){",
+                  "    pm.expect(orders).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('At least one order exists', function(){",
+                  "    pm.expect(orders.length).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set('order_id', orders[0].id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Order Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/{{order_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                "{{order_id}}"
+              ]
+            },
+            "description": "Returns complete order information."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const order = pm.response.json();",
+                  "",
+                  "pm.test('Items exist', function(){",
+                  "    pm.expect(order.items).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Total exists', function(){",
+                  "    pm.expect(order.total).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Status exists', function(){",
+                  "    pm.expect(order.status).to.not.be.undefined;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 payments",
+      "item": [
+        {
+          "name": "Cash On Delivery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"order_id\":\"{{order_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/cod/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "payments",
+                "cod"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', function(){",
+                  " pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const payment=pm.response.json();",
+                  "",
+                  "pm.collectionVariables.set('payment_id',payment.id);",
+                  "",
+                  "pm.test('Provider COD',function(){",
+                  " pm.expect(payment.provider).to.eql('COD');",
+                  "});",
+                  "",
+                  "pm.test('Status SUCCESS',function(){",
+                  " pm.expect(payment.status).to.eql('SUCCESS');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Payment History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "payments"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200',function(){",
+                  " pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const payments=pm.response.json();",
+                  "",
+                  "pm.test('Response is array',function(){",
+                  " pm.expect(payments).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create Razorpay Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"order_id\":\"{{order_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/razorpay/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "payments",
+                "razorpay"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201',function(){",
+                  " pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const payment=pm.response.json();",
+                  "",
+                  "pm.collectionVariables.set('payment_id',payment.id);",
+                  "pm.collectionVariables.set('gateway_order_id',payment.gateway_order_id);",
+                  "",
+                  "pm.test('Provider Razorpay',function(){",
+                  " pm.expect(payment.provider).to.eql('RAZORPAY');",
+                  "});",
+                  "",
+                  "pm.test('Gateway Order Exists',function(){",
+                  " pm.expect(payment.gateway_order_id).to.not.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify Razorpay Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"razorpay_payment_id\":\"\",\n\"razorpay_order_id\":\"{{gateway_order_id}}\",\n\"razorpay_signature\":\"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/verify/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "payments",
+                "verify"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Coupon",
+      "item": [
+        {
+          "name": "Apply Coupon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"order_id\":\"{{order_id}}\",\n    \"code\":\"{{coupon_code}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/coupons/apply/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "coupons",
+                "apply"
+              ]
+            },
+            "description": "Applies a coupon to an order."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.test('Response exists', function(){",
+                  "    pm.expect(response).to.not.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Coupons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/coupons/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "coupons"
+              ]
+            },
+            "description": "Returns all active coupons."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const coupons = pm.response.json();",
+                  "",
+                  "pm.test('Response is array', function(){",
+                  "    pm.expect(coupons).to.be.an('array');",
+                  "});",
+                  "",
+                  "if(coupons.length > 0){",
+                  "    pm.collectionVariables.set('coupon_code', coupons[0].code);",
+                  "}",
+                  "",
+                  "pm.test('Response time <1000ms', function(){",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": []
+}

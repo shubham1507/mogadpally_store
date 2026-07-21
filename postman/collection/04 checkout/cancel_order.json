@@ -1,0 +1,42 @@
+{
+  "name": "Cancel Order",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/orders/{{order_id}}/cancel/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "orders",
+        "{{order_id}}",
+        "cancel"
+      ]
+    },
+    "description": "Cancels a pending order."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const response = pm.response.json();",
+          "",
+          "pm.test('Cancellation successful', function(){",
+          "    pm.expect(response.message).to.eql('Order cancelled successfully.');",
+          "});"
+        ]
+      }
+    }
+  ]
+}

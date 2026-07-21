@@ -1,5 +1,8 @@
 from django.db import transaction
 from django.utils import timezone
+from django.conf import settings
+
+import razorpay
 
 from apps.orders.models import Order, OrderStatus
 
@@ -77,7 +80,6 @@ class CODPaymentService:
 
         return payment
 
-
 class RazorpayPaymentService:
     """
     Razorpay Order Creation Service
@@ -114,3 +116,60 @@ class RazorpayPaymentService:
         )
 
         return payment
+
+    # ==========================
+    # ADD THIS METHOD
+    # ==========================
+
+    @staticmethod
+    @transaction.atomic
+    def verify(
+        *,
+        payment: Payment,
+        razorpay_payment_id: str,
+        razorpay_signature: str,
+    ) -> Payment:
+
+        client = RazorpayGateway.client()
+
+        client.utility.verify_payment_signature(
+            {
+                "razorpay_order_id": payment.gateway_order_id,
+                "razorpay_payment_id": razorpay_payment_id,
+                "razorpay_signature": razorpay_signature,
+            }
+        )
+
+        payment.payment_id = razorpay_payment_id
+        payment.signature = razorpay_signature
+        payment.status = PaymentStatus.SUCCESS
+        payment.paid_at = timezone.now()
+
+        gateway_response = payment.gateway_response or {}
+        gateway_response.update(
+            {
+                "verified": True,
+                "payment_id": razorpay_payment_id,
+                "signature": razorpay_signature,
+            }
+        )
+
+        payment.gateway_response = gateway_response
+
+        payment.save(
+            update_fields=[
+                "payment_id",
+                "signature",
+                "status",
+                "paid_at",
+                "gateway_response",
+            ]
+        )
+
+        order = payment.order
+        order.status = OrderStatus.CONFIRMED
+        order.save(update_fields=["status"])
+
+        return payment
+
+

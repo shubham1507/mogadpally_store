@@ -1,0 +1,51 @@
+{
+  "name": "Refresh Token",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/auth/refresh",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "auth",
+        "refresh"
+      ]
+    },
+    "description": "Generates a new access token using refresh token."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const json = pm.response.json();",
+          "",
+          "pm.test('Access token returned', function () {",
+          "    pm.expect(json.access).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.collectionVariables.set('access_token', json.access);",
+          "",
+          "pm.test('Response time < 1000 ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

@@ -85,6 +85,7 @@ class ProductListView(generics.ListAPIView):
         "mrp",
         "created_at",
         "name",
+        "average_rating",
     ]
 
     ordering = [

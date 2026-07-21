@@ -1,0 +1,60 @@
+{
+  "name": "Add Product Review",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"rating\": 5,\n    \"comment\": \"Excellent Ayurvedic product.\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/products/{{product_id}}/reviews",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products",
+        "{{product_id}}",
+        "reviews"
+      ]
+    },
+    "description": "Creates a review for a product."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 201', function(){",
+          "    pm.response.to.have.status(201);",
+          "});",
+          "",
+          "const review = pm.response.json();",
+          "",
+          "pm.test('Rating saved', function(){",
+          "    pm.expect(review.rating).to.eql(5);",
+          "});",
+          "",
+          "pm.test('Comment saved', function(){",
+          "    pm.expect(review.comment).to.eql('Excellent Ayurvedic product.');",
+          "});",
+          "",
+          "pm.collectionVariables.set('review_id', review.id);",
+          "",
+          "pm.test('Response time < 1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

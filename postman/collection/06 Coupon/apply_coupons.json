@@ -1,0 +1,53 @@
+{
+  "name": "Apply Coupon",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"order_id\":\"{{order_id}}\",\n    \"code\":\"{{coupon_code}}\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/coupons/apply/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "coupons",
+        "apply"
+      ]
+    },
+    "description": "Applies a coupon to an order."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const response = pm.response.json();",
+          "",
+          "pm.test('Response exists', function(){",
+          "    pm.expect(response).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

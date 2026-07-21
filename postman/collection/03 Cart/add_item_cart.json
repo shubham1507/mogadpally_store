@@ -1,0 +1,54 @@
+{
+  "name": "Add Item To Cart",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"product_id\":\"{{product_id}}\",\n    \"quantity\":1\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/cart/items",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "cart",
+        "items"
+      ]
+    }
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const cart = pm.response.json();",
+          "",
+          "pm.test('Cart has items', function(){",
+          "    pm.expect(cart.items.length).to.be.greaterThan(0);",
+          "});",
+          "",
+          "pm.collectionVariables.set('cart_item_id', cart.items[0].id);",
+          "",
+          "pm.test('Subtotal exists', function(){",
+          "    pm.expect(cart.subtotal).to.not.be.undefined;",
+          "});"
+        ]
+      }
+    }
+  ]
+}

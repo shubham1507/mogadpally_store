@@ -1,0 +1,30 @@
+{
+  "name": "Verify Razorpay Payment",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n\"razorpay_payment_id\":\"\",\n\"razorpay_order_id\":\"{{gateway_order_id}}\",\n\"razorpay_signature\":\"\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/payments/verify/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "payments",
+        "verify"
+      ]
+    }
+  }
+}

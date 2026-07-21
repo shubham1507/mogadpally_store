@@ -1,0 +1,51 @@
+{
+  "name": "Get Product Reviews",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products/{{product_id}}/reviews",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "products",
+        "{{product_id}}",
+        "reviews"
+      ]
+    },
+    "description": "Returns all reviews for a product."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const reviews = pm.response.json();",
+          "",
+          "pm.test('Response is array', function(){",
+          "    pm.expect(reviews).to.be.an('array');",
+          "});",
+          "",
+          "if(reviews.length > 0){",
+          "    pm.test('Review contains rating', function(){",
+          "        pm.expect(reviews[0].rating).to.not.be.undefined;",
+          "    });",
+          "",
+          "    pm.test('Review contains comment', function(){",
+          "        pm.expect(reviews[0].comment).to.not.be.undefined;",
+          "    });",
+          "}",
+          "",
+          "pm.test('Response time < 1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

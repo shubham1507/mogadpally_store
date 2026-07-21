@@ -27,7 +27,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     mrp = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField(default=0)
-    stock_quantity = models.PositiveIntegerField(default=0)
+    
 
     reserved_quantity = models.PositiveIntegerField(default=0)
 
@@ -45,7 +45,7 @@ class Product(models.Model):
         return self.name
 
     @property
-    def in_stock(self):
+    def in_stock(self)-> bool:
         return self.stock_quantity > 0
 
 

@@ -1,0 +1,48 @@
+{
+  "name": "List Coupons",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/coupons/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "coupons"
+      ]
+    },
+    "description": "Returns all active coupons."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const coupons = pm.response.json();",
+          "",
+          "pm.test('Response is array', function(){",
+          "    pm.expect(coupons).to.be.an('array');",
+          "});",
+          "",
+          "if(coupons.length > 0){",
+          "    pm.collectionVariables.set('coupon_code', coupons[0].code);",
+          "}",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

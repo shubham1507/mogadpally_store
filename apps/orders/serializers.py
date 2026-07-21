@@ -71,6 +71,10 @@ class CheckoutResponseSerializer(serializers.ModelSerializer):
             "id",
             "status",
             "total",
-            "created_at",
+            "created_at",   
+            "subtotal",
+            "tax",
+            "shipping_charge",
+            "discount"
         )
         read_only_fields = fields

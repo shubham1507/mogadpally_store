@@ -4,7 +4,7 @@ from .views import (
     CODPaymentAPIView,
     PaymentHistoryAPIView,
     RazorpayOrderAPIView,
-    #RazorpayVerifyAPIView,
+    RazorpayVerifyAPIView,
 )
 
 app_name = "payments"
@@ -20,11 +20,11 @@ urlpatterns = [
         RazorpayOrderAPIView.as_view(),
         name="razorpay-order",
     ),
-    # path(
-    #     "verify/",
-    #     RazorpayVerifyAPIView.as_view(),
-    #     name="verify-payment",
-    # ),
+    path(
+        "verify/",
+        RazorpayVerifyAPIView.as_view(),
+        name="verify-payment",
+    ),
     path(
         "",
         PaymentHistoryAPIView.as_view(),

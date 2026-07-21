@@ -1,0 +1,46 @@
+{
+  "name": "Remove Cart Item",
+  "request": {
+    "method": "DELETE",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/cart/items/{{cart_item_id}}",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "cart",
+        "items",
+        "{{cart_item_id}}"
+      ]
+    },
+    "description": "Removes one item from the cart."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const cart = pm.response.json();",
+          "",
+          "pm.test('Cart returned', function(){",
+          "    pm.expect(cart.id).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

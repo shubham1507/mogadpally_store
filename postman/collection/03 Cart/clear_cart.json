@@ -1,0 +1,48 @@
+{
+  "name": "Clear Cart",
+  "request": {
+    "method": "DELETE",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/cart",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "cart"
+      ]
+    },
+    "description": "Removes all items from the authenticated user's cart."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const cart = pm.response.json();",
+          "",
+          "pm.test('Cart is empty', function(){",
+          "    pm.expect(cart.items.length).to.eql(0);",
+          "});",
+          "",
+          "pm.test('Total items is zero', function(){",
+          "    pm.expect(cart.total_items).to.eql(0);",
+          "});",
+          "",
+          "pm.test('Subtotal is zero', function(){",
+          "    pm.expect(Number(cart.subtotal)).to.eql(0);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

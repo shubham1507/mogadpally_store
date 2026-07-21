@@ -1,0 +1,62 @@
+{
+  "name": "Update Cart Item Quantity",
+  "request": {
+    "method": "PATCH",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"quantity\":2\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/cart/items/{{cart_item_id}}",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "cart",
+        "items",
+        "{{cart_item_id}}"
+      ]
+    },
+    "description": "Updates quantity of an existing cart item."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const cart = pm.response.json();",
+          "",
+          "pm.test('Cart contains items', function(){",
+          "    pm.expect(cart.items.length).to.be.greaterThan(0);",
+          "});",
+          "",
+          "pm.test('Quantity updated', function(){",
+          "    pm.expect(cart.items[0].quantity).to.eql(2);",
+          "});",
+          "",
+          "pm.test('Subtotal exists', function(){",
+          "    pm.expect(cart.subtotal).to.not.be.undefined;",
+          "});",
+          "",
+          "pm.test('Response time <1000ms', function(){",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

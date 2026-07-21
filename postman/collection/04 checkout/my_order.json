@@ -1,0 +1,46 @@
+{
+  "name": "My Orders",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/orders/",
+      "host": [
+        "{{base_url}}"
+      ],
+      "path": [
+        "orders"
+      ]
+    },
+    "description": "Returns all orders of authenticated user."
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status 200', function(){",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "const orders = pm.response.json();",
+          "",
+          "pm.test('Orders is array', function(){",
+          "    pm.expect(orders).to.be.an('array');",
+          "});",
+          "",
+          "pm.test('At least one order exists', function(){",
+          "    pm.expect(orders.length).to.be.greaterThan(0);",
+          "});",
+          "",
+          "pm.collectionVariables.set('order_id', orders[0].id);"
+        ]
+      }
+    }
+  ]
+}

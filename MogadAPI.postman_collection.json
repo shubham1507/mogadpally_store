@@ -1,0 +1,3073 @@
+{
+  "info": {
+    "_postman_id": "4d12876d-8218-48bd-b7d5-270a3f0aafbf",
+    "name": "MogadAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6208562"
+  },
+  "item": [
+    {
+      "name": "01 Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"nmj123@gmail.com\",\r\n  \"password\": \"snj\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"nmj@gmail.com\",\r\n  \"password\": \"Terse@1234\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 14:29:18 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "801"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NTU5NTU4LCJpYXQiOjE3ODQ1NTc3NTgsImp0aSI6ImMzNDRiOTViMjk5NTQ5ZTBiZjQyM2ZhNDM0ZjJmZDcyIiwidXNlcl9pZCI6ImVkNDNlOGFkLTliZWItNDE3MC1iY2U0LTBiNzAxMjRhZTI2NiJ9.-Tfp1M_6pnv7mui357h_ZCdrFSaeJ-f7d82u5rxSkzI\",\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTE2MjU1OCwiaWF0IjoxNzg0NTU3NzU4LCJqdGkiOiI2YmEwMWU0NDc3NDg0OTI0YjIxNjgzZjM5NmY5NDVlZSIsInVzZXJfaWQiOiJlZDQzZThhZC05YmViLTQxNzAtYmNlNC0wYjcwMTI0YWUyNjYifQ.GGL4QouFv7d7JP3pST_oVIP6bSJ_fDX2l-7gBZQ_tEA\",\n    \"user\": {\n        \"id\": \"ed43e8ad-9beb-4170-bce4-0b70124ae266\",\n        \"email\": \"nmj@gmail.com\",\n        \"first_name\": \"nitin\",\n        \"last_name\": \"joshi\",\n        \"phone\": \"7276782952\",\n        \"role\": \"customer\",\n        \"is_verified\": false,\n        \"profile_image\": null,\n        \"date_of_birth\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "Register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"sarthak@gmail.com\",\r\n  \"password\": \"Terse@1234\",\r\n  \"confirm_password\": \"Terse@1234\",\r\n  \"first_name\": \"sarthak\",\r\n  \"last_name\": \"joshi\",\r\n  \"phone\": \"1122334455\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/auth/register/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 14:33:21 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Registration successful.\",\n    \"user\": {\n        \"id\": \"da115a98-494a-42d8-9445-22659c595345\",\n        \"email\": \"sarthak@gmail.com\",\n        \"first_name\": \"sarthak\",\n        \"last_name\": \"joshi\",\n        \"phone\": \"1122334455\",\n        \"role\": \"customer\",\n        \"is_verified\": false,\n        \"profile_image\": null,\n        \"date_of_birth\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NTU5NTU4LCJpYXQiOjE3ODQ1NTc3NTgsImp0aSI6ImMzNDRiOTViMjk5NTQ5ZTBiZjQyM2ZhNDM0ZjJmZDcyIiwidXNlcl9pZCI6ImVkNDNlOGFkLTliZWItNDE3MC1iY2U0LTBiNzAxMjRhZTI2NiJ9.-Tfp1M_6pnv7mui357h_ZCdrFSaeJ-f7d82u5rxSkzI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/profile/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "profile",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/auth/profile/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "profile",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 14:35:54 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, PUT, PATCH, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "211"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"ed43e8ad-9beb-4170-bce4-0b70124ae266\",\n    \"email\": \"nmj@gmail.com\",\n    \"first_name\": \"nitin\",\n    \"last_name\": \"joshi\",\n    \"phone\": \"7276782952\",\n    \"role\": \"customer\",\n    \"is_verified\": false,\n    \"profile_image\": null,\n    \"date_of_birth\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NTU5NTU4LCJpYXQiOjE3ODQ1NTc3NTgsImp0aSI6ImMzNDRiOTViMjk5NTQ5ZTBiZjQyM2ZhNDM0ZjJmZDcyIiwidXNlcl9pZCI6ImVkNDNlOGFkLTliZWItNDE3MC1iY2U0LTBiNzAxMjRhZTI2NiJ9.-Tfp1M_6pnv7mui357h_ZCdrFSaeJ-f7d82u5rxSkzI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"nmj321@gmail.com\",\r\n    \"first_name\": \"nitin\",\r\n    \"last_name\": \"joshi\",\r\n    \"phone\": \"9890410136\",\r\n    \"is_verified\": false,\r\n    \"profile_image\": null,\r\n    \"date_of_birth\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/profile/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "profile",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Profile",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"nmj321@gmail.com\",\r\n    \"first_name\": \"nitin\",\r\n    \"last_name\": \"joshi\",\r\n    \"phone\": \"9890410136\",\r\n    \"is_verified\": false,\r\n    \"profile_image\": null,\r\n    \"date_of_birth\": null\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/auth/profile/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "profile",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 14:45:23 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, PUT, PATCH, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "214"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"ed43e8ad-9beb-4170-bce4-0b70124ae266\",\n    \"email\": \"nmj321@gmail.com\",\n    \"first_name\": \"nitin\",\n    \"last_name\": \"joshi\",\n    \"phone\": \"9890410136\",\n    \"role\": \"customer\",\n    \"is_verified\": false,\n    \"profile_image\": null,\n    \"date_of_birth\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Catalog",
+      "item": [
+        {
+          "name": "Get categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/categories",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "categories"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get categories",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/categories",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "categories"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:12:12 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "692"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 5,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"49cd8575-fd64-4996-a9af-15c759101d35\",\n            \"name\": \"Digestive Care\",\n            \"slug\": \"digestive-care\",\n            \"parent\": null,\n            \"description\": \"\"\n        },\n        {\n            \"id\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"name\": \"Immunity & Wellness\",\n            \"slug\": \"immunity-wellness\",\n            \"parent\": null,\n            \"description\": \"\"\n        },\n        {\n            \"id\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"name\": \"Joint & Pain Relief\",\n            \"slug\": \"joint-pain-relief\",\n            \"parent\": null,\n            \"description\": \"\"\n        },\n        {\n            \"id\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"name\": \"Skin & Hair Care\",\n            \"slug\": \"skin-hair-care\",\n            \"parent\": null,\n            \"description\": \"\"\n        },\n        {\n            \"id\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"name\": \"Stress & Sleep\",\n            \"slug\": \"stress-sleep\",\n            \"parent\": null,\n            \"description\": \"\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get products",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:13:27 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2157"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 8,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n            \"name\": \"Bhringraj Hair Oil\",\n            \"slug\": \"bhringraj-hair-oil\",\n            \"price\": \"230.00\",\n            \"mrp\": \"260.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"9579959a-5c4a-4d4c-ac1b-2358e5d8f341\",\n            \"name\": \"Giloy Ghanvati Tablets\",\n            \"slug\": \"giloy-ghanvati-tablets\",\n            \"price\": \"165.00\",\n            \"mrp\": \"190.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"4ffb9da8-7486-408d-89ca-2ff7ac721ed0\",\n            \"name\": \"Brahmi-Shankhpushpi Syrup\",\n            \"slug\": \"brahmi-shankhpushpi-syrup\",\n            \"price\": \"210.00\",\n            \"mrp\": \"240.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"60516be7-3946-4f63-a9df-b57fdd45e074\",\n            \"name\": \"Mahanarayan Oil\",\n            \"slug\": \"mahanarayan-oil\",\n            \"price\": \"260.00\",\n            \"mrp\": \"300.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"8eb60c4c-dfba-415e-8372-4a2d3db0560e\",\n            \"name\": \"Neem-Tulsi Face Pack\",\n            \"slug\": \"neem-tulsi-face-pack\",\n            \"price\": \"190.00\",\n            \"mrp\": \"220.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"5c1de2ea-8526-45d5-960e-fbf7500dbda6\",\n            \"name\": \"Triphala Churna\",\n            \"slug\": \"triphala-churna\",\n            \"price\": \"150.00\",\n            \"mrp\": \"180.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"49cd8575-fd64-4996-a9af-15c759101d35\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"ec67606f-5c4a-43dd-a235-933e6cbaae1d\",\n            \"name\": \"Chyawanprash — Classic\",\n            \"slug\": \"chyawanprash-classic\",\n            \"price\": \"340.00\",\n            \"mrp\": \"400.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get product details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products/bhringraj-hair-oil",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "bhringraj-hair-oil"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get product details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products/bhringraj-hair-oil",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products",
+                    "bhringraj-hair-oil"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:15:28 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "638"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n    \"name\": \"Bhringraj Hair Oil\",\n    \"slug\": \"bhringraj-hair-oil\",\n    \"sku\": \"MB-BHO-200ML\",\n    \"category\": {\n        \"id\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n        \"name\": \"Skin & Hair Care\",\n        \"slug\": \"skin-hair-care\",\n        \"parent\": null,\n        \"description\": \"\"\n    },\n    \"description\": \"Cold-pressed hair oil for regular use, light non-greasy formula.\",\n    \"ayurvedic_benefits\": \"Reduces hair fall, promotes growth, nourishes scalp\",\n    \"ingredients\": \"Bhringraj, Amla, Coconut oil base, Curry leaf extract\",\n    \"weight_grams\": 220,\n    \"price\": \"230.00\",\n    \"mrp\": \"260.00\",\n    \"stock_quantity\": 139,\n    \"in_stock\": true,\n    \"average_rating\": null,\n    \"review_count\": 0,\n    \"images\": [],\n    \"reviews\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products?search=ashwagandha",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "ashwagandha"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search product",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products?search=ashwagandha",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "ashwagandha"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:21:12 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "837"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 3,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"60516be7-3946-4f63-a9df-b57fdd45e074\",\n            \"name\": \"Mahanarayan Oil\",\n            \"slug\": \"mahanarayan-oil\",\n            \"price\": \"260.00\",\n            \"mrp\": \"300.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"ec67606f-5c4a-43dd-a235-933e6cbaae1d\",\n            \"name\": \"Chyawanprash — Classic\",\n            \"slug\": \"chyawanprash-classic\",\n            \"price\": \"340.00\",\n            \"mrp\": \"400.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Filter category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products?category=stress-sleep",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "stress-sleep"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Filter category",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products?category=stress-sleep",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "stress-sleep"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:22:27 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "589"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"4ffb9da8-7486-408d-89ca-2ff7ac721ed0\",\n            \"name\": \"Brahmi-Shankhpushpi Syrup\",\n            \"slug\": \"brahmi-shankhpushpi-syrup\",\n            \"price\": \"210.00\",\n            \"mrp\": \"240.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Filter price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products?min_price=100&max_price=500",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "min_price",
+                  "value": "100"
+                },
+                {
+                  "key": "max_price",
+                  "value": "500"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Filter price",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products?min_price=100&max_price=500",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "min_price",
+                      "value": "100"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "500"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:24:35 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2157"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 8,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n            \"name\": \"Bhringraj Hair Oil\",\n            \"slug\": \"bhringraj-hair-oil\",\n            \"price\": \"230.00\",\n            \"mrp\": \"260.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"9579959a-5c4a-4d4c-ac1b-2358e5d8f341\",\n            \"name\": \"Giloy Ghanvati Tablets\",\n            \"slug\": \"giloy-ghanvati-tablets\",\n            \"price\": \"165.00\",\n            \"mrp\": \"190.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"4ffb9da8-7486-408d-89ca-2ff7ac721ed0\",\n            \"name\": \"Brahmi-Shankhpushpi Syrup\",\n            \"slug\": \"brahmi-shankhpushpi-syrup\",\n            \"price\": \"210.00\",\n            \"mrp\": \"240.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"60516be7-3946-4f63-a9df-b57fdd45e074\",\n            \"name\": \"Mahanarayan Oil\",\n            \"slug\": \"mahanarayan-oil\",\n            \"price\": \"260.00\",\n            \"mrp\": \"300.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"8eb60c4c-dfba-415e-8372-4a2d3db0560e\",\n            \"name\": \"Neem-Tulsi Face Pack\",\n            \"slug\": \"neem-tulsi-face-pack\",\n            \"price\": \"190.00\",\n            \"mrp\": \"220.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"5c1de2ea-8526-45d5-960e-fbf7500dbda6\",\n            \"name\": \"Triphala Churna\",\n            \"slug\": \"triphala-churna\",\n            \"price\": \"150.00\",\n            \"mrp\": \"180.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"49cd8575-fd64-4996-a9af-15c759101d35\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"ec67606f-5c4a-43dd-a235-933e6cbaae1d\",\n            \"name\": \"Chyawanprash — Classic\",\n            \"slug\": \"chyawanprash-classic\",\n            \"price\": \"340.00\",\n            \"mrp\": \"400.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sort price-Ascending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products?ordering=price",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "price"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sort price-Ascending",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products?ordering=price",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "ordering",
+                      "value": "price"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 15:28:50 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2157"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 8,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"5c1de2ea-8526-45d5-960e-fbf7500dbda6\",\n            \"name\": \"Triphala Churna\",\n            \"slug\": \"triphala-churna\",\n            \"price\": \"150.00\",\n            \"mrp\": \"180.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"49cd8575-fd64-4996-a9af-15c759101d35\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"9579959a-5c4a-4d4c-ac1b-2358e5d8f341\",\n            \"name\": \"Giloy Ghanvati Tablets\",\n            \"slug\": \"giloy-ghanvati-tablets\",\n            \"price\": \"165.00\",\n            \"mrp\": \"190.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"8eb60c4c-dfba-415e-8372-4a2d3db0560e\",\n            \"name\": \"Neem-Tulsi Face Pack\",\n            \"slug\": \"neem-tulsi-face-pack\",\n            \"price\": \"190.00\",\n            \"mrp\": \"220.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"4ffb9da8-7486-408d-89ca-2ff7ac721ed0\",\n            \"name\": \"Brahmi-Shankhpushpi Syrup\",\n            \"slug\": \"brahmi-shankhpushpi-syrup\",\n            \"price\": \"210.00\",\n            \"mrp\": \"240.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n            \"name\": \"Bhringraj Hair Oil\",\n            \"slug\": \"bhringraj-hair-oil\",\n            \"price\": \"230.00\",\n            \"mrp\": \"260.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"60516be7-3946-4f63-a9df-b57fdd45e074\",\n            \"name\": \"Mahanarayan Oil\",\n            \"slug\": \"mahanarayan-oil\",\n            \"price\": \"260.00\",\n            \"mrp\": \"300.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"ec67606f-5c4a-43dd-a235-933e6cbaae1d\",\n            \"name\": \"Chyawanprash — Classic\",\n            \"slug\": \"chyawanprash-classic\",\n            \"price\": \"340.00\",\n            \"mrp\": \"400.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sort price-descending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products?ordering=-price",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "-price"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sort price-descending",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products?ordering=-price",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "ordering",
+                      "value": "-price"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 16:41:43 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2157"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 8,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"ec67606f-5c4a-43dd-a235-933e6cbaae1d\",\n            \"name\": \"Chyawanprash — Classic\",\n            \"slug\": \"chyawanprash-classic\",\n            \"price\": \"340.00\",\n            \"mrp\": \"400.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"42c0c791-ab6d-43e0-a596-6cc91333feeb\",\n            \"name\": \"Ashwagandha Capsules\",\n            \"slug\": \"ashwagandha-capsules\",\n            \"price\": \"280.00\",\n            \"mrp\": \"320.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"60516be7-3946-4f63-a9df-b57fdd45e074\",\n            \"name\": \"Mahanarayan Oil\",\n            \"slug\": \"mahanarayan-oil\",\n            \"price\": \"260.00\",\n            \"mrp\": \"300.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"a322c50d-30b7-4265-be61-5724f0e59243\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n            \"name\": \"Bhringraj Hair Oil\",\n            \"slug\": \"bhringraj-hair-oil\",\n            \"price\": \"230.00\",\n            \"mrp\": \"260.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"4ffb9da8-7486-408d-89ca-2ff7ac721ed0\",\n            \"name\": \"Brahmi-Shankhpushpi Syrup\",\n            \"slug\": \"brahmi-shankhpushpi-syrup\",\n            \"price\": \"210.00\",\n            \"mrp\": \"240.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"1c0331d9-c594-4300-9dac-a61c7e064637\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"8eb60c4c-dfba-415e-8372-4a2d3db0560e\",\n            \"name\": \"Neem-Tulsi Face Pack\",\n            \"slug\": \"neem-tulsi-face-pack\",\n            \"price\": \"190.00\",\n            \"mrp\": \"220.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"9579959a-5c4a-4d4c-ac1b-2358e5d8f341\",\n            \"name\": \"Giloy Ghanvati Tablets\",\n            \"slug\": \"giloy-ghanvati-tablets\",\n            \"price\": \"165.00\",\n            \"mrp\": \"190.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"27cc5739-8059-4a7b-acdd-d4271c45aaea\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        },\n        {\n            \"id\": \"5c1de2ea-8526-45d5-960e-fbf7500dbda6\",\n            \"name\": \"Triphala Churna\",\n            \"slug\": \"triphala-churna\",\n            \"price\": \"150.00\",\n            \"mrp\": \"180.00\",\n            \"in_stock\": true,\n            \"primary_image\": null,\n            \"category\": \"49cd8575-fd64-4996-a9af-15c759101d35\",\n            \"average_rating\": null,\n            \"review_count\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NTY4MjY2LCJpYXQiOjE3ODQ1NjY0NjYsImp0aSI6IjAwMDkxODk3OTYwYTRmMjNhYzdlY2NlM2M4ZmU1Y2ZiIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.oLo8-kmsGJaYYcbbR2AwlduxUiIWHVa3NfOADrdzHgA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"rating\": 5,\r\n  \"comment\": \"Excellent Ayurvedic product. Highly recommended.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/products/e105f2ec-7f60-4275-9519-7eaeada2dcf9/reviews",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "e105f2ec-7f60-4275-9519-7eaeada2dcf9",
+                "reviews"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add review",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"rating\": 5,\r\n  \"comment\": \"Excellent Ayurvedic product. Highly recommended.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/products/e105f2ec-7f60-4275-9519-7eaeada2dcf9/reviews",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "products",
+                    "e105f2ec-7f60-4275-9519-7eaeada2dcf9",
+                    "reviews"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 16:54:39 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, POST, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "191"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"11b1902f-0d4d-447e-b7ec-9d4806f19c3e\",\n    \"user\": \"nmj123@gmail.com\",\n    \"rating\": 5,\n    \"comment\": \"Excellent Ayurvedic product. Highly recommended.\",\n    \"created_at\": \"2026-07-20T22:24:39.186702+05:30\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Cart",
+      "item": [
+        {
+          "name": "Add item",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"product_id\": \"9579959a-5c4a-4d4c-ac1b-2358e5d8f341\",\r\n  \"quantity\": 2\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/cart/items",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add item",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"product_id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\r\n  \"quantity\": 2\r\n}\r\n\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/cart/items",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cart",
+                    "items"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:09:30 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "526"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9146fdde-2986-4849-b56a-f7c5f19ffc45\",\n    \"items\": [\n        {\n            \"id\": \"d36f7709-94f0-4d70-abfd-92449f78314b\",\n            \"product\": {\n                \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n                \"name\": \"Bhringraj Hair Oil\",\n                \"slug\": \"bhringraj-hair-oil\",\n                \"price\": \"230.00\",\n                \"mrp\": \"260.00\",\n                \"in_stock\": true,\n                \"primary_image\": null,\n                \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\"\n            },\n            \"quantity\": 2,\n            \"price_at_addition\": \"230.00\",\n            \"total_price\": 460,\n            \"created_at\": \"2026-07-21T07:39:30.847725+05:30\"\n        }\n    ],\n    \"total_items\": 2,\n    \"subtotal\": \"460.00\",\n    \"updated_at\": \"2026-07-20T16:40:44.990663+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/cart",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "cart"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Cart",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/cart",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cart"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:11:21 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, DELETE, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "526"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9146fdde-2986-4849-b56a-f7c5f19ffc45\",\n    \"items\": [\n        {\n            \"id\": \"d36f7709-94f0-4d70-abfd-92449f78314b\",\n            \"product\": {\n                \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n                \"name\": \"Bhringraj Hair Oil\",\n                \"slug\": \"bhringraj-hair-oil\",\n                \"price\": \"230.00\",\n                \"mrp\": \"260.00\",\n                \"in_stock\": true,\n                \"primary_image\": null,\n                \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\"\n            },\n            \"quantity\": 2,\n            \"price_at_addition\": \"230.00\",\n            \"total_price\": 460,\n            \"created_at\": \"2026-07-21T07:39:30.847725+05:30\"\n        }\n    ],\n    \"total_items\": 2,\n    \"subtotal\": \"460.00\",\n    \"updated_at\": \"2026-07-20T16:40:44.990663+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update quantity",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjAwNTc0LCJpYXQiOjE3ODQ1OTg3NzQsImp0aSI6Ijk3ZGY2OTRhN2NlODQ2MmE4MmYxNDM5YmQ4YzZhZmMyIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.RGzmyJOaJMVy6w7E3xGcXppWgl7VydWKNJx_RgK-tz8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"quantity\": 9\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/cart/items/d36f7709-94f0-4d70-abfd-92449f78314b",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "cart",
+                "items",
+                "d36f7709-94f0-4d70-abfd-92449f78314b"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update quantity",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"quantity\": 9\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/cart/items/d36f7709-94f0-4d70-abfd-92449f78314b",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cart",
+                    "items",
+                    "d36f7709-94f0-4d70-abfd-92449f78314b"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:14:25 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "528"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9146fdde-2986-4849-b56a-f7c5f19ffc45\",\n    \"items\": [\n        {\n            \"id\": \"d36f7709-94f0-4d70-abfd-92449f78314b\",\n            \"product\": {\n                \"id\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n                \"name\": \"Bhringraj Hair Oil\",\n                \"slug\": \"bhringraj-hair-oil\",\n                \"price\": \"230.00\",\n                \"mrp\": \"260.00\",\n                \"in_stock\": true,\n                \"primary_image\": null,\n                \"category\": \"770a9b7d-7945-4a92-a965-93af27d1081d\"\n            },\n            \"quantity\": 9,\n            \"price_at_addition\": \"230.00\",\n            \"total_price\": 2070,\n            \"created_at\": \"2026-07-21T07:39:30.847725+05:30\"\n        }\n    ],\n    \"total_items\": 9,\n    \"subtotal\": \"2070.00\",\n    \"updated_at\": \"2026-07-20T16:40:44.990663+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Remove item",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjAwNTc0LCJpYXQiOjE3ODQ1OTg3NzQsImp0aSI6Ijk3ZGY2OTRhN2NlODQ2MmE4MmYxNDM5YmQ4YzZhZmMyIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.RGzmyJOaJMVy6w7E3xGcXppWgl7VydWKNJx_RgK-tz8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/cart/items/d36f7709-94f0-4d70-abfd-92449f78314b",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "cart",
+                "items",
+                "d36f7709-94f0-4d70-abfd-92449f78314b"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Remove item",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/cart/items/d36f7709-94f0-4d70-abfd-92449f78314b",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cart",
+                    "items",
+                    "d36f7709-94f0-4d70-abfd-92449f78314b"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:18:06 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9146fdde-2986-4849-b56a-f7c5f19ffc45\",\n    \"items\": [],\n    \"total_items\": 0,\n    \"subtotal\": \"0.00\",\n    \"updated_at\": \"2026-07-20T16:40:44.990663+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Clear cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjAwNTc0LCJpYXQiOjE3ODQ1OTg3NzQsImp0aSI6Ijk3ZGY2OTRhN2NlODQ2MmE4MmYxNDM5YmQ4YzZhZmMyIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.RGzmyJOaJMVy6w7E3xGcXppWgl7VydWKNJx_RgK-tz8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/cart",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "cart"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Clear cart",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/cart",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cart"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:19:41 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, DELETE, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9146fdde-2986-4849-b56a-f7c5f19ffc45\",\n    \"items\": [],\n    \"total_items\": 0,\n    \"subtotal\": \"0.00\",\n    \"updated_at\": \"2026-07-20T16:40:44.990663+05:30\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 Orders",
+      "item": [
+        {
+          "name": "Checkout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/checkout/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "checkout",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Checkout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/checkout/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "checkout",
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:26:21 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "77"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Request failed\",\n    \"errors\": [\n        \"Your cart is empty.\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "My orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA0NDIwLCJpYXQiOjE3ODQ2MDI2MjAsImp0aSI6ImQ3OGM0ZmNjZjY0ODRlZmE5NjU3ZGNkZDk4NWUyMzE5IiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.beTFlabOrZ-m1jeV8lUPqvzrKc56HnAYEQjiZ2bpsTE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "My orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 02:57:16 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "274"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 1,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"cb03b178-8757-406a-ab72-0266287c17ca\",\n            \"status\": \"PENDING\",\n            \"subtotal\": \"230.00\",\n            \"tax\": \"41.40\",\n            \"shipping_charge\": \"0.00\",\n            \"discount\": \"0.00\",\n            \"total\": \"271.40\",\n            \"total_items\": 1,\n            \"created_at\": \"2026-07-20T17:05:07.046942+05:30\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Order detail",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA0NDIwLCJpYXQiOjE3ODQ2MDI2MjAsImp0aSI6ImQ3OGM0ZmNjZjY0ODRlZmE5NjU3ZGNkZDk4NWUyMzE5IiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.beTFlabOrZ-m1jeV8lUPqvzrKc56HnAYEQjiZ2bpsTE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/cb03b178-8757-406a-ab72-0266287c17ca",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "cb03b178-8757-406a-ab72-0266287c17ca"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Order detail",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/cb03b178-8757-406a-ab72-0266287c17ca",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "cb03b178-8757-406a-ab72-0266287c17ca"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 03:04:42 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "498"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"cb03b178-8757-406a-ab72-0266287c17ca\",\n    \"status\": \"PENDING\",\n    \"subtotal\": \"230.00\",\n    \"tax\": \"41.40\",\n    \"shipping_charge\": \"0.00\",\n    \"discount\": \"0.00\",\n    \"total\": \"271.40\",\n    \"total_items\": 1,\n    \"notes\": \"\",\n    \"created_at\": \"2026-07-20T17:05:07.046942+05:30\",\n    \"updated_at\": \"2026-07-20T17:05:07.046963+05:30\",\n    \"items\": [\n        {\n            \"id\": \"9254d87f-286b-4739-999d-a374ec0510be\",\n            \"product\": \"e105f2ec-7f60-4275-9519-7eaeada2dcf9\",\n            \"product_name\": \"Bhringraj Hair Oil\",\n            \"product_sku\": \"MB-BHO-200ML\",\n            \"quantity\": 1,\n            \"price\": \"230.00\",\n            \"total\": \"230.00\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cancel order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA0NDIwLCJpYXQiOjE3ODQ2MDI2MjAsImp0aSI6ImQ3OGM0ZmNjZjY0ODRlZmE5NjU3ZGNkZDk4NWUyMzE5IiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.beTFlabOrZ-m1jeV8lUPqvzrKc56HnAYEQjiZ2bpsTE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/cb03b178-8757-406a-ab72-0266287c17ca/cancel/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "cb03b178-8757-406a-ab72-0266287c17ca",
+                "cancel",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Cancel order",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/cb03b178-8757-406a-ab72-0266287c17ca/cancel/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "cb03b178-8757-406a-ab72-0266287c17ca",
+                    "cancel",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 03:06:42 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "43"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Order cancelled successfully.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 Coupons",
+      "item": [
+        {
+          "name": "Get coupon",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA0NDIwLCJpYXQiOjE3ODQ2MDI2MjAsImp0aSI6ImQ3OGM0ZmNjZjY0ODRlZmE5NjU3ZGNkZDk4NWUyMzE5IiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.beTFlabOrZ-m1jeV8lUPqvzrKc56HnAYEQjiZ2bpsTE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/coupons/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "coupons",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get coupon",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/coupons/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "coupons",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 03:17:37 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "[]"
+            }
+          ]
+        },
+        {
+          "name": "Apply coupon",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA0NDIwLCJpYXQiOjE3ODQ2MDI2MjAsImp0aSI6ImQ3OGM0ZmNjZjY0ODRlZmE5NjU3ZGNkZDk4NWUyMzE5IiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.beTFlabOrZ-m1jeV8lUPqvzrKc56HnAYEQjiZ2bpsTE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"order_id\": \"cb03b178-8757-406a-ab72-0266287c17ca\",\r\n  \"code\": \"WELCOME10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/coupons/apply/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "coupons",
+                "apply",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Apply coupon",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"order_id\": \"cb03b178-8757-406a-ab72-0266287c17ca\",\r\n  \"code\": \"WELCOME10\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/coupons/apply/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "coupons",
+                    "apply",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 03:26:52 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"coupon\": \"WELCOME10\",\n    \"discount\": \"20.00\",\n    \"final_total\": \"251.40\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06 Payments",
+      "item": [
+        {
+          "name": "COD",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA2NTY3LCJpYXQiOjE3ODQ2MDQ3NjcsImp0aSI6IjgyM2JjZGQzODg2OTQwMGVhMmM5ZTA1NTdhOGQ3ZjdmIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.kDJNQH28pMooOv1f22US0iyPNmArWOKjbNdDPHB9ND4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"order_id\": \"cb03b178-8757-406a-ab72-0266287c17ca\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/payments/cod/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "cod",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "COD",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"order_id\": \"cb03b178-8757-406a-ab72-0266287c17ca\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/payments/cod/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "payments",
+                    "cod",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 03:33:32 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "314"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"cc87e403-49de-4d3d-b5ea-0a9163c013ce\",\n    \"order\": \"cb03b178-8757-406a-ab72-0266287c17ca\",\n    \"provider\": \"COD\",\n    \"status\": \"SUCCESS\",\n    \"amount\": \"271.40\",\n    \"currency\": \"INR\",\n    \"payment_id\": \"\",\n    \"transaction_id\": \"\",\n    \"gateway_order_id\": \"\",\n    \"paid_at\": \"2026-07-21T09:03:32.883968+05:30\",\n    \"created_at\": \"2026-07-21T09:03:32.881714+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Razorpay order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"order_id\": \"044d3dba-5b7b-4112-a4c1-1234f31a3ab2\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/payments/razorpay/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "razorpay",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Razorpay order",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"order_id\": \"044d3dba-5b7b-4112-a4c1-1234f31a3ab2\"\r\n}\r\n\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/payments/razorpay/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "payments",
+                    "razorpay",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 04:06:06 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "POST, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "309"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"36983748-3b2c-427f-b01c-7f37c5034b23\",\n    \"order\": \"044d3dba-5b7b-4112-a4c1-1234f31a3ab2\",\n    \"provider\": \"RAZORPAY\",\n    \"status\": \"PENDING\",\n    \"amount\": \"932.20\",\n    \"currency\": \"INR\",\n    \"payment_id\": \"\",\n    \"transaction_id\": \"\",\n    \"gateway_order_id\": \"order_TG0y7iflNdsLIl\",\n    \"paid_at\": null,\n    \"created_at\": \"2026-07-21T09:36:06.195433+05:30\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Payment history",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjA4Mjc5LCJpYXQiOjE3ODQ2MDY0NzksImp0aSI6IjM1MmNlYWY0NDc0YTRlMjNiMjIwOTY2ZmI4ZmNkMWVlIiwidXNlcl9pZCI6IjFhYzdiNzM1LWUzZjUtNGY1ZS05MDUzLWU3NTNiODhmYWNmNiJ9.XuL3FEnUDlGhz-qS4Jvn8kpbIVCSc-Nij9P6MBGsBUA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"order_id\": \"044d3dba-5b7b-4112-a4c1-1234f31a3ab2\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/payments/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Payment history",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"order_id\": \"044d3dba-5b7b-4112-a4c1-1234f31a3ab2\"\r\n}\r\n\r\n"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/payments/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "payments",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Tue, 21 Jul 2026 04:08:16 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "WSGIServer/0.2 CPython/3.14.3"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept, origin"
+                },
+                {
+                  "key": "Allow",
+                  "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "386"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"36983748-3b2c-427f-b01c-7f37c5034b23\",\n            \"provider\": \"RAZORPAY\",\n            \"status\": \"PENDING\",\n            \"amount\": \"932.20\",\n            \"currency\": \"INR\",\n            \"created_at\": \"2026-07-21T09:36:06.195433+05:30\"\n        },\n        {\n            \"id\": \"cc87e403-49de-4d3d-b5ea-0a9163c013ce\",\n            \"provider\": \"COD\",\n            \"status\": \"SUCCESS\",\n            \"amount\": \"271.40\",\n            \"currency\": \"INR\",\n            \"created_at\": \"2026-07-21T09:03:32.881714+05:30\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

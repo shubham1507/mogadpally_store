@@ -1,28 +1,29 @@
+.git
+.github
+.gitignore
+
 venv/
 .venv/
+env/
 
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
-.git
-.gitignore
+.pytest_cache/
+.coverage
 
-.idea
-.vscode
-
-.env
-
-media/
-
-staticfiles/
-
-*.sqlite3
+.vscode/
+.idea/
 
 node_modules/
 
-coverage/
+media/
+staticfiles/
 
-.pytest_cache/
+.env
+.env.*
 
-*.log
+Dockerfile
+docker-compose.yml
